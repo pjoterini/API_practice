@@ -1,10 +1,14 @@
 {
-  "type": "module",
   "name": "apis",
   "version": "1.0.0",
-  "description": "This is the data selfie app by Joey Lee.",
-  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": "16.x"
+  },
+  "description": "learning apis",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

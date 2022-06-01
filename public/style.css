@@ -1,0 +1,17 @@
+h1 {
+    background-color: blue;
+    color: white;
+    padding: 1rem;
+    border-radius: 50px;
+}
+
+div {
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid rgb(165, 165, 165);
+    background-color: rgb(255, 248, 240);
+}
+
+#container-div {
+    background-color: white;
+}

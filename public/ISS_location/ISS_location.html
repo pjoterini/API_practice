@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <title>ISS Location</title>
+    <style>
+      #map {
+        height: 600px;
+        width: 800px;
+      }
+    </style>
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
@@ -17,15 +22,13 @@
       integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
       crossorigin=""
     ></script>
-    <script defer src="logs.js"></script>
-    <link rel="stylesheet" href="../style.css" />
+    <script defer src="ISS_location.js"></script>
   </head>
   <body>
-    <div class="animals">🦉 🦉 🦉</div>
-    <h1>ALL</h1>
-    <div class="links">
-      <a href="../">Enter data again</a>
-    </div>
+    <h1>WHERE is the ISS?</h1>
+    <p>latitude: <span id="lat"></span> &deg;</p>
+    <p>longitude: <span id="lon"></span> &deg;</p>
+    <p>altitude: <span id="alt"></span> km</p>
 
     <div id="map"></div>
   </body>

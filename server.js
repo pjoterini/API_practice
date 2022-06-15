@@ -14,32 +14,14 @@ app.listen(port, () =>
 
 const database = new Datastore('database.db')
 database.loadDatabase()
-// database.insert({
-//   name: 'pjtoerini',
-//   status: '🐧'
-// })
 
-
-app.get('/api', (request, response) => {
-    database.find({}, (err, data) => {
-      response.json(data)
-    })
-})
-
-app.post('/api', (request, response) => {
-  console.log(request.body)
-    const data = request.body
-    const timestamp = Date.now()
-    data.timestamp = timestamp
-    database.insert(data)
-    response.json(data)
-})
-
-app.get('/weather/:latlon', async (request, response) => {
-  // OPEN WEATHER API
-  const latlon = request.params.latlon.split(',')
-  const lat = latlon[0]
-  const lon = latlon[1].trim()
+// OPEN WEATHER AND AIR QUALITY APIS - get data from apis via proxy server to avoid CORS errors, instal node-fetch via npm to allow use of fetch() on server side.
+app.get('/logs/weather/:latlon', async (request, response) => {
+  console.log(request.params)
+  const latlon = request.params.latlon.split(",")
+  console.log(latlon)
+  let lat = latlon[0]
+  let lon = latlon[1]
   
   const api_key = process.env.API_KEY
   const weather_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`
@@ -55,4 +37,20 @@ app.get('/weather/:latlon', async (request, response) => {
     air: air_data
   }
   response.json(data)
+})
+
+// POST DATA THAT I'VE GOT FROM APIS(via server) TO DATABASE
+app.post('/api', (request, response) => {
+    const data = request.body
+    const timestamp = Date.now()
+    data.timestamp = timestamp
+    database.insert(data)
+    response.json(data)
+})
+
+// DISPLAY DATABASE DATA BACK ON PAGE
+app.get('/api', (request, response) => {
+  database.find({}, (err, data) => {
+    response.json(data)
+  })
 })

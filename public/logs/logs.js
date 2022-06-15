@@ -1,4 +1,4 @@
-getData();
+
 async function getData() {
   const response = await fetch("/api");
   const data = await response.json();
@@ -31,14 +31,17 @@ async function getData() {
   data.forEach(item => {
     const marker = L.marker([item.lat, item.lon]).addTo(map);
 
-    let txt = `lon = ${item.lon}, lat = ${item.lat}, temps = ${item.weatherData.temp}, air = ${item.airData.value}`
+    let txt
+
     if (item.airData.value < 0) {
       txt = `lon = ${item.lon}, lat = ${item.lat}, temps = ${item.weatherData.temp}, air = no value`
+    } else {
+      txt = `lon = ${item.lon}, lat = ${item.lat}, temps = ${item.weatherData.temp}, air = ${item.airData[0].value}`
     }
     
-
     marker.bindPopup(txt)
   })
 }
 
+getData();
       
